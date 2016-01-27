@@ -67,7 +67,7 @@
 				return ko.isObservable(prop) && prop.errors && prop.errors().length > 0;
 			});
 
-			return hasErroredObservables || _.some(vm, function(prop) {
+			return !hasErroredObservables && !_.some(vm, function(prop) {
 				return typeof(prop.isValid) == 'function' && !prop.isValid();
 			});
 					
@@ -75,6 +75,13 @@
 	};
 })();
 
+//var VM = function() {
+//	this.a = ko.observable('a');
+//	return ko.validateableViewModel(this);
+//};
+//
+//var vm = new VM();
+//
 //var InvalidNested = function() {
 //	this.arr = ko.observableArray().extend({ minCount: { val: 1 } });
 //
@@ -87,3 +94,4 @@
 //};
 //
 //var vm = new ValidParent();
+
