@@ -75,15 +75,15 @@
 	};
 })();
 
-var InvalidNested = function() {
-	this.arr = ko.observableArray().extend({ minCount: { val: 1 } });
-
-	return ko.validateableViewModel(this);
-};
-
-var ValidParent = function() {
-	this.nested = new InvalidNested();
-	return ko.validateableViewModel(this);
-};
-
-var vm = new ValidParent();
+//var InvalidNested = function() {
+//	this.arr = ko.observableArray().extend({ minCount: { val: 1 } });
+//
+//	return ko.validateableViewModel(this);
+//};
+//
+//var ValidParent = function() {
+//	this.nested = new InvalidNested();
+//	return ko.validateableViewModel(this);
+//};
+//
+//var vm = new ValidParent();
