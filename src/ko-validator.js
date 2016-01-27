@@ -74,24 +74,3 @@
 		});
 	};
 })();
-
-//var VM = function() {
-//	this.a = ko.observable('a');
-//	return ko.validateableViewModel(this);
-//};
-//
-//var vm = new VM();
-//
-//var InvalidNested = function() {
-//	this.arr = ko.observableArray().extend({ minCount: { val: 1 } });
-//
-//	return ko.validateableViewModel(this);
-//};
-//
-//var ValidParent = function() {
-//	this.nested = new InvalidNested();
-//	return ko.validateableViewModel(this);
-//};
-//
-//var vm = new ValidParent();
-
