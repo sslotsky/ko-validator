@@ -1,4 +1,4 @@
-[![BuildStatus](https://travis-ci.org/sslotsky/ko-validator.svg?branch=master)]
+![BuildStatus](https://travis-ci.org/sslotsky/ko-validator.svg?branch=master)
 
 # ko-validator
 
