@@ -1,3 +1,5 @@
+[![BuildStatus](https://travis-ci.org/sslotsky/ko-validator.svg?branch=master)]
+
 # ko-validator
 
 This plugin adds easy and extensible validation capabilities to your knockout observables and view models.
@@ -79,8 +81,8 @@ New validators can be created by using the `ko.validation.register` function. Th
 
 ## Contributing
 
-If you wish to contribute, please create a fork and submit a pull request. Do not submit without adding tests for your changes and ensuring that the entire test suite is passing. There is currently no CI enabled.
+If you wish to contribute, please create a fork and submit a pull request. Do not submit without adding tests for your changes.
 
 ### Tests
 
-Open `test/test-runner.html` in your browser to run all Jasmine tests. To add a Jasmine test, create a `.js` file for it and reference it in `test-runner.html` with a `<script>`.
+This repository has continuous integration through Travis CI. Tests can also be run locally by opening `test/test-runner.html` in the browser. To add a new Jasmine test, create a `.js` file for it in the `test` directory and reference it in `test-runner.html` with a `<script>` tag. This test will be automatically picked up by the task that Travis uses to run tests.
