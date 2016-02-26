@@ -61,7 +61,7 @@
 	}, "Value was higher than expected");
 
 	ko.validation.register('required', function(newValue, options) {
-		return newValue === null || typeof(newValue) === 'undefined';
+		return _.isEmpty(newValue);
 	}, "Value cannot be blank");
 
 	ko.validateableViewModel = function(vm) {
