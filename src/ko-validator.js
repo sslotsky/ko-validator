@@ -57,9 +57,12 @@
 	}, "Not enough elements");
 
 	ko.validation.register('lt', function(newValue, options) {
-		return newValue >= ko.unwrap(options.val);
+		return !isNaN(parseFloat(newValue)) && newValue >= ko.unwrap(options.val);
 	}, "Value was higher than expected");
 
+	ko.validation.register('required', function(newValue, options) {
+		return newValue === null || typeof(newValue) === 'undefined';
+	}, "Value cannot be blank");
 
 	ko.validateableViewModel = function(vm) {
 		vm.isValid = ko.computed(function() {
