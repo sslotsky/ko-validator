@@ -67,21 +67,21 @@
 	ko.validateableViewModel = function(vm) {
 		vm.isValid = ko.computed(function() {
 			var allObservables = _.filter(vm, ko.isObservable);
-			var erroredObservables = _.filter(allObservables, function(prop) {
+			var hasErroredObservables = _.some(allObservables, function(prop) {
 				return prop.errors && prop.errors().length > 0;
 			});
 
-			var erroredCollections = _.filter(allObservables, function(prop) {
+			var hasErroredCollections = _.some(allObservables, function(prop) {
 				return prop.push && _.some(prop(), function(i) {
 					return typeof(i.isValid) === 'function' && !i.isValid();
 				});
 			});
 
-			var erroredViewModels = _.filter(vm, function(prop) {
+			var hasErroredViewModels = _.some(vm, function(prop) {
 				return typeof(prop.isValid) === 'function' && !prop.isValid();
 			});
 
-			return !_.some(erroredObservables.concat(erroredCollections).concat(erroredViewModels));
+			return !(hasErroredObservables || hasErroredCollections || hasErroredViewModels);
 		});
 	};
 })();
