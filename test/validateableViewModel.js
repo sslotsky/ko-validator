@@ -21,6 +21,34 @@ describe("the validateableViewModel", function() {
 		});
 	});
 
+	describe ("with a nested collection ov validateableViewModels", function() {
+		var Nested = function(n) {
+			this.n = ko.observable(n).extend({ lt: { val: 4 } });
+			return ko.validateableViewModel(this);
+		};
+
+		var Parent = function() {
+			this.numbers = ko.observableArray();
+			return ko.validateableViewModel(this);
+		};
+
+		var vm = new Parent();
+
+		describe("when at least one nested view model is invalid", function() {
+			it("should be invalid", function() {
+				vm.numbers(_.map([3,4], function(n) { return new Nested(n); }));	
+				expect(vm.isValid()).toBe(false);
+			});
+		});
+
+		describe("when all nested view models are valid", function() {
+			it("should be valid", function() {
+				vm.numbers(_.map([2,3], function(n) { return new Nested(n); }));
+				expect(vm.isValid()).toBe(true);
+			});
+		});
+	});
+
 	describe("with a nested validateableViewModel", function() {
 		var Nested = function() {
 			this.arr = ko.observableArray().extend({ minCount: { val: 1 } });
