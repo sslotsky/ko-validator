@@ -24,7 +24,8 @@ describe("the required validator", function() {
 
   describe("when the observable is an empty string", function() {
     it("should be invalid", function() {
-      expect(text.errors()).toEqual([]);
+      text('');
+      expect(text.errors().length).toEqual(1);
     });
   });
 });
