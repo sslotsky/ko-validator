@@ -1,6 +1,15 @@
 describe("the validateableViewModel", function() {
   var VM = function(n) {
     this.n = ko.observable(n).extend({ lt: { val: 2 } });
+  
+    return ko.validateableViewModel(this);
+  };
+
+  var NVM = function(n, m) {
+    this.n = ko.observable(n).extend({ lt: { val: 2 } });
+    this.nested = ko.observable({
+        m: ko.observable(m).extend({ lt: { val:2 } })
+     });
 
     return ko.validateableViewModel(this);
   };
@@ -18,6 +27,22 @@ describe("the validateableViewModel", function() {
 
     it("should be valid", function() {
       expect(vm.isValid()).toBe(true);
+    });
+  });
+
+  describe("with valid nested observables", function() {
+    var vm = new NVM(1, 1);
+
+    it("should be valid", function() {
+      expect(vm.isValid()).toBe(true);
+    });
+  });
+
+  describe("with invalid nested observables", function() {
+    var vm = new NVM(1, 3);
+
+    it("should be invalid", function() {
+      expect(vm.isValid()).toBe(false);
     });
   });
 

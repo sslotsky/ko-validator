@@ -67,8 +67,12 @@
   ko.validateableViewModel = function(vm) {
     vm.isValid = ko.computed(function() {
       var allObservables = _.filter(vm, ko.isObservable);
-      var hasErroredObservables = _.some(allObservables, function(prop) {
-        return prop.errors && prop.errors().length > 0;
+      var hasErroredObservables = _.some(allObservables, function (prop) {
+          var nestedObservables = _.filter(prop(), ko.isObservable);
+          
+          return (prop.errors && prop.errors().length > 0) || (_.some(nestedObservables, function(nestedProp) {
+              return nestedProp.errors && nestedProp.errors().length > 0;
+          }));
       });
 
       var hasErroredCollections = _.some(allObservables, function(prop) {
